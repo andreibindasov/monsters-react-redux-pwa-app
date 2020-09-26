@@ -1,6 +1,8 @@
 .card-container{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: #99dada;
     border: 1px solid grey;
     border-radius: 6px;
@@ -16,4 +18,13 @@
 
 .card-container:hover{
     transform: scale(1.06);
+}
+
+.monster-name{
+    font-size: 1.5rem;
+}
+
+.monster-img{
+    width: 6.9rem;
+    height: 9rem;
 }
