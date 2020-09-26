@@ -1,5 +1,14 @@
 .App {
   text-align: center;
+  
+}
+
+h1{
+  font-family: 'Love Ya Like A Sister', cursive;
+  font-size: 2.4rem;
+  color: aquamarine;
+  text-shadow: 1px 1px 3px rgba(0, 0, 128, 0.699);
+  /* font-family: 'Sue Ellen Francisco', cursive;   */
 }
 
 .App-logo {

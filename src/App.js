@@ -1,26 +1,77 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import ErrorBoundry from './components/ErrorBoundry';
+import { CardList } from './components/card-list/card-list.component';
+import { SearchBox } from './components/searchbox/searchbox.component';
+
+import { setSearchField, requestMonsters } from './actions'
+
+const mapStateToProps = state => {
+  return{
+    searchField: state.searchMonsters.searchField,
+    monsters: state.requestMonsters.monsters,
+    isPending: state.requestMonsters.isPending,
+    error: state.requestMonsters.error
+  }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleChange: (event) => dispatch(setSearchField(event.target.value)),
+    onRequestMonsters: () => dispatch(requestMonsters())
+  }
+}
+
+class App extends Component {
+  // constructor(){
+  //   super();
+    
+  //   this.state={
+  //     monsters: [],
+  //     // searchField:''
+  //   };
+  // this.handleChange = this.handleChange.bind(this);
+    
+  // }
+
+    
+  componentDidMount(){
+          
+      // fetch('https://jsonplaceholder.typicode.com/users')
+      //   .then(res => res.json())
+      //   .then(users=> this.setState({monsters:users}));
+      this.props.onRequestMonsters()
+  }
+
+  // handleChange = e => {
+  //   this.setState({searchField: e.target.value})
+  // }
+
+  render(){
+    // const {monsters} = this.state;
+    const {searchField, handleChange, monsters, isPending} = this.props
+    const filteredMonsters = monsters.filter(monster=>
+      monster.name.toLowerCase().includes(searchField.toLowerCase()));
+
+    return isPending ? 
+      <h1> LOADING... </h1> :
+      (
+        <div className="App">
+            <h1>MONSTERS ROLODEX</h1>
+              <SearchBox
+                placeholder='search monsters'
+                handleChange={handleChange}
+              />
+            <hr></hr> 
+            <ErrorBoundry>
+                <CardList monsters={filteredMonsters}/>
+            </ErrorBoundry>
+        </div>
+        
+      );
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

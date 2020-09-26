@@ -1,0 +1,21 @@
+.search{
+    -webkit-appearance:none;
+    border:none;
+    outline:none;
+    padding:10px;
+    width:150px;
+    line-height: 30px;
+    margin-bottom: 30px;
+    box-shadow: 3px 3px 3px rgba(163, 192, 216, 0.6);
+    cursor: pointer;
+    border-radius:0 9px 0 9px;
+    transition: all 0.33s ease-out;
+    background-color: rgb(241, 241, 234);
+    font-family: 'Sue Ellen Francisco', cursive;
+    font-size: 1.5rem;
+}
+
+.search:focus{
+    border-radius:0;
+    box-shadow: 1px 1px 1px rgba(163, 192, 216,0.6);
+}
