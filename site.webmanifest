@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "Monsters React App",
+    "short_name": "Monsters",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
